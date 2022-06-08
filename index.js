@@ -18,6 +18,11 @@ app.get("/autores/:id/livros", async function(req,res) {
   res.json(resultado.livros)
 }) ;
 
+app.get("/autores/:id", async function(req,res){
+  var resultado = await autor.findByPk(req.params.id);
+  res.json(resultado)
+});
+
 app.post('/autores', async function(req, res){
   var resultado = await autor.create(req.body);
   res.json(resultado);
@@ -62,7 +67,7 @@ app.get("/livros/:id/autor", async function(req,res) {
 
 app.get("/livros/:id", async function(req,res){
     var resultado = await livro.findByPk(req.params.id);
-res.json(resultado)
+  res.json(resultado)
 });
 
 app.post('/livros', async function(req,res) {
