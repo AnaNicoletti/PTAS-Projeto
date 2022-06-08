@@ -13,6 +13,11 @@ app.get("/autores", async function(req, res){
   res.json(resultado);
 });
 
+app.get("/autores/:id/livros", async function(req,res) {
+  var resultado = await autor.findByPk(req.params.id, { include: 'livros' });
+  res.json(resultado.livros)
+}) ;
+
 app.post('/autores', async function(req, res){
   var resultado = await autor.create(req.body);
   res.json(resultado);
