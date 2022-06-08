@@ -55,6 +55,11 @@ app.get("/livros", async function(req,res){
     res.json(resultado)
 });
 
+app.get("/livros/:id/autor", async function(req,res) {
+  var resultado = await livro.findByPk(req.params.id, { include: 'autor' });
+  res.json(resultado.autor)
+}) ;
+
 app.post('/livros', async function(req,res) {
   var resultado = await livro.create(req.body);
   res.json(resultado)
